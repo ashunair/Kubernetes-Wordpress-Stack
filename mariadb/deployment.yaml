@@ -1,14 +1,13 @@
-# mariadb/deployment.yaml
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: mariadb
   namespace: mariadb
 spec:
-  replicas: 1
   selector:
     matchLabels:
       app: mariadb
+  replicas: 1
   template:
     metadata:
       labels:
@@ -16,7 +15,7 @@ spec:
     spec:
       containers:
       - name: mariadb
-        image: mariadb:10.5
+        image: mariadb:latest
         env:
         - name: MYSQL_ROOT_PASSWORD
           value: rootpassword
@@ -25,6 +24,6 @@ spec:
         - name: MYSQL_USER
           value: wpuser
         - name: MYSQL_PASSWORD
-          value: wppassword
+          value: password
         ports:
         - containerPort: 3306

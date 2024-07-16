@@ -1,13 +1,13 @@
-# wordpress/service.yaml
 apiVersion: v1
 kind: Service
 metadata:
   name: wordpress
   namespace: wordpress
 spec:
-  ports:
-  - port: 80
-    protocol: TCP
   selector:
     app: wordpress
-  clusterIP: None
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+  type: LoadBalancer
